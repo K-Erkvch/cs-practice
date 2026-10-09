@@ -27,7 +27,17 @@ def read_valid(lines: list[str]) -> list[dict]:
     Разбирает строки журнала, пропуская
     пустые и негодные
     '''
-    pass
+    valid_records = []
+    for line in lines:
+        if not line.strip():
+            continue
+        try:
+            record = parse_record(line)
+    
+            valid_records.append(record)
+        except ValueError:
+                continue
+    return valid_records
 
 def average_by_city(records: list[dict]) -> dict:
     '''
