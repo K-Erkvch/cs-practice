@@ -1,5 +1,24 @@
 def parse_record(line: str) -> dict:
-    pass
+    '''
+    Разбирает строки журнала и определяет ошибку
+    '''
+    if not line.strip():
+        raise ValueError('Пустая строка')
+    parts = line.split(';')
+    if len(parts) != 3:
+        raise ValueError(f'Ожидалось 3 поля, получено {len(parts)}')
+    city, temp, date = parts
+    if not city.strip() or not date.strip():
+        raise ValueError("Город или дата не могут быть пустыми")
+    try:
+        temp = float(temp)
+    except ValueError:
+        raise ValueError(f'Температура {temp} не является числом')
+    return {
+        "city": city.strip(),
+        "temp": temp,
+        "date": date.strip()
+        }
     
     
     
