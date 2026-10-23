@@ -2,12 +2,18 @@ from collections import Counter
 
 def parse_event(line: str) -> dict:
     line = line.strip()
+    if not line:
+        raise ValueError("Пустая строка")
+        
     parts = line.split(' ', maxsplit=2)
     
-    if len(parts) < 3:
-        raise ValueError("Недостаточно частей в строке")
+    if len(parts) < 2:
+        raise ValueError("Недостаточно данных для парсинга")
         
-    time_str, level, message = parts
+    time_str = parts[0]
+    level = parts[1]
+    message = parts[2] if len(parts) == 3 else ""
+    
     valid_levels = {"DEBUG", "INFO", "WARNING", "ERROR"}
     
     if level not in valid_levels:
