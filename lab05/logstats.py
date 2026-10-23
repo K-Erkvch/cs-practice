@@ -69,6 +69,6 @@ def format_report(counts: dict, errors: list[list]) -> str:
     report_lines.append("Частые ошибки:")
     
     for err_msg, count in errors:
-        report_lines.append(f"— {err_msg} — {count}")
+        report_lines.append(f"- {err_msg} — {count}")
         
     return "\n".join(report_lines) + "\n"
