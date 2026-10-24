@@ -1,9 +1,9 @@
 def count_by_extension(paths: list[str]) -> dict[str, int]:
     counts = {}
     for path in paths:
-        filename = path.split('/')[-1] 
+        filename = path.split('/')[-1]
         
-        if '.' in filename:
+        if '.' in filename and not filename.startswith('.'):
             ext = filename.rsplit('.', 1)[-1].lower()
         else:
             ext = ""
